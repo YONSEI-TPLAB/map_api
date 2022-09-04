@@ -8,6 +8,7 @@
 import subprocess
 import sys
 import os
+from os.path import join, dirname
 
 def install(package):
     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
@@ -18,11 +19,8 @@ except ImportError:
   install('python-dotenv')
   from dotenv import load_dotenv
 
-dotenv_path = '../.env'
+dotenv_path = join(dirname(__file__), '../.env')
 load_dotenv(dotenv_path) ## to seperate private contents to .env file
-
-NAVER_MAPS_API_KEY_ID = os.environ.get('NAVER_MAPS_API_KEY_ID')
-NAVER_MAPS_API_KEY = os.environ.get('NAVER_MAPS_API_KEY')
 
 # %%
 ### for basic python
@@ -48,6 +46,10 @@ maps_headers = {
   'X-NCP-APIGW-API-KEY-ID': NAVER_MAPS_API_KEY_ID,
   'X-NCP-APIGW-API-KEY': NAVER_MAPS_API_KEY
 }
+
+# %%
+def getMapsHeaders(*, maps_headers=maps_headers):
+  return maps_headers
 
 # %% [markdown]
 # ## Find Car Direction by Coordinates
