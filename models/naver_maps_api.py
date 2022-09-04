@@ -93,6 +93,9 @@ def directionsCar(maps_headers, url_params, num_waypoints=5, options=['traoptima
   maps_url_with_params = maps_url + '?' + url_params
   j = requestNaverMapsApi(maps_headers, maps_url_with_params)
 
+  if 'currentDateTime' not in j:
+    return pd.DataFrame()
+
   ##### Write the data into dataframe
   df = pd.DataFrame({
     'params': url_params,
@@ -229,6 +232,9 @@ def directionsPt(url_params):
   maps_url = 'https://map.naver.com/v5/api/transit/directions/point-to-point'
   maps_url_with_params = maps_url + '?' + url_params
   j = scrapNaverMaps(maps_url_with_params)
+
+  if 'currentDateTime' not in j:
+    return pd.DataFrame()
 
   ##### Write the data into dataframe
   df = pd.DataFrame()
