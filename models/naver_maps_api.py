@@ -75,9 +75,10 @@ def requestNaverMapsApi(maps_headers, maps_url_with_params):
   )
 
   # print(row['params'])
+  if r.status_code != 200:
+    raise Exception('ERROR: ' + str(r.status_code))
 
   j = r.json()
-
   return j
 
 def directionsCar(maps_headers, url_params, num_waypoints=5, options=['traoptimal', 'trafast', 'tracomfort']):
@@ -218,8 +219,10 @@ def scrapNaverMaps(maps_url_with_params):
     url=maps_url_with_params, 
   )
 
-  j = r.json()
+  if r.status_code != 200:
+    raise Exception('ERROR: ' + str(r.status_code))
 
+  j = r.json()
   return j
 
 def directionsPt(url_params):
