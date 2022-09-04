@@ -23,6 +23,11 @@ dotenv_path = join(dirname(__file__), '../.env')
 load_dotenv(dotenv_path) ## to seperate private contents to .env file
 
 # %%
+
+NAVER_MAPS_API_KEY_ID = os.environ.get('NAVER_MAPS_API_KEY_ID')
+NAVER_MAPS_API_KEY = os.environ.get('NAVER_MAPS_API_KEY')
+
+# %%
 ### for basic python
 from typing import Union, Tuple
 import copy
