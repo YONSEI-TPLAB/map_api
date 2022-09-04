@@ -5,8 +5,19 @@
 
 # %%
 ## For setting for each computer
-import os, json
-from dotenv import load_dotenv
+import subprocess
+import sys
+import os
+
+def install(package):
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
+try:
+  from dotenv import load_dotenv
+except ImportError:
+  install('python-dotenv')
+  from dotenv import load_dotenv
+
 dotenv_path = '../.env'
 load_dotenv(dotenv_path) ## to seperate private contents to .env file
 
